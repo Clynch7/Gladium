@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/home_horizontal_margin"
+    android:layout_marginRight="@dimen/home_horizontal_margin"
+    android:layout_marginBottom="@dimen/home_horizontal_margin"
+    android:layout_marginLeft="@dimen/home_horizontal_margin"
+    android:minHeight="91dp"
+    tools:context="com.example.clynch.gladium.HomeFragment">
+
+    <TextView
+        android:id="@+id/glad_nameTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="@string/default_gladiator_name"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="29dp" />
+
+    <LinearLayout
+        android:id="@+id/rubric_homeLL"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/glad_nameTV"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/title_home" />
+
+        <TextView
+            android:id="@+id/ageTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/age_home" />
+
+        <TextView
+            android:id="@+id/hpTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/hp_home" />
+
+        <TextView
+            android:id="@+id/weaponTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/weapon_home" />
+
+        <TextView
+            android:id="@+id/shieldTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/shield_home" />
+
+        <TextView
+            android:id="@+id/goldTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/gold_home" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/value_homeLL"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/glad_nameTV"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/rubric_homeLL"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_valueTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/title_home" />
+
+        <TextView
+            android:id="@+id/age_valueTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/age_home" />
+
+        <TextView
+            android:id="@+id/hp_valueTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/hp_home" />
+
+        <TextView
+            android:id="@+id/weapon_valueTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/weapon_home" />
+
+        <TextView
+            android:id="@+id/shield_valueTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/shield_home" />
+
+        <TextView
+            android:id="@+id/gold_valueTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/gold_home" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/arena_homeBT"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/value_homeLL"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/Arena" />
+
+    <Button
+        android:id="@+id/shop_homeBT"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/arena_homeBT"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/Shop" />
+
+    <Button
+        android:id="@+id/abilities_homeBT"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shop_homeBT"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/Abilities" />
+
+</RelativeLayout>

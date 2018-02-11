@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/home_horizontal_margin"
+    android:layout_marginRight="@dimen/home_horizontal_margin"
+    android:layout_marginBottom="@dimen/home_horizontal_margin"
+    android:layout_marginLeft="@dimen/home_horizontal_margin"
+    android:minHeight="91dp"
+    tools:context="com.example.clynch.gladium.MakeGladiatorFragment">
+    <Button
+        android:text="Done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="54dp"
+        android:onClick="createGladiator"
+        android:id="@+id/create_gladiator_button" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/nameET"
+        android:allowUndo="true"
+        android:hint="@string/Name"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <EditText
+        android:id="@+id/titleET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameET"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:allowUndo="true"
+        android:ems="10"
+        android:gravity="center_vertical|center_horizontal"
+        android:hint="@string/Title"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/ageET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleET"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:allowUndo="true"
+        android:ems="10"
+        android:gravity="center_vertical|center_horizontal"
+        android:hint="@string/Age"
+        android:inputType="text" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/goldET"
+        android:allowUndo="true"
+        android:hint="@string/Gold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ageET"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/points_left_infoTV"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/goldET"
+        android:layout_marginTop="40dp"
+        android:text="@string/Points_left"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/points_leftTV"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/points_left_infoTV"
+        android:layout_marginTop="10dp"
+        android:textSize="24sp" />
+</RelativeLayout>
