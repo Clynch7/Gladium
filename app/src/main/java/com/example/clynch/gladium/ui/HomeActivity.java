@@ -1,17 +1,17 @@
-package com.example.clynch.gladium;
+package com.example.clynch.gladium.ui;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
-import org.json.JSONArray;
+import com.example.clynch.gladium.R;
+import com.example.clynch.gladium.data.DataStorage;
+import com.example.clynch.gladium.logic.Game;
+
+import org.json.JSONObject;
 
 /**
  * The main activity, This activity handles any use with the gladiator.
@@ -26,6 +26,7 @@ MakeGladiatorFragment.OnFragmentInteractionListener{
     HomeFragment homeFragment;
     MakeGladiatorFragment makeGladiatorFragment;
     FragmentManager fragmentManager;
+    Game game;
 
     /**
      * The fragments are defined and the fragmentManager to swap between them is setup
@@ -37,12 +38,18 @@ MakeGladiatorFragment.OnFragmentInteractionListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        Game.initialize(this);
+
         makeGladiatorFragment = new MakeGladiatorFragment();
         homeFragment = new HomeFragment();
 
         fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, makeGladiatorFragment);
+        if(game.hasGladiator()){
+            fragmentTransaction.add(R.id.fragment_container, homeFragment);
+        }else{
+            fragmentTransaction.add(R.id.fragment_container, makeGladiatorFragment);
+        }
         fragmentTransaction.commit();
 
     }
@@ -50,10 +57,11 @@ MakeGladiatorFragment.OnFragmentInteractionListener{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Game.save();
     }
 
     @Override
-    public void onMadeGladiator(JSONArray jsGlad) {
+    public void onMadeGladiator(JSONObject jsGlad) {
         Log.e("TAG", jsGlad.toString());
         DataStorage.saveGladiator(jsGlad, this);
         Log.e("TAG", DataStorage.loadGladiator(this));

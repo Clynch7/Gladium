@@ -1,10 +1,11 @@
-package com.example.clynch.gladium;
+package com.example.clynch.gladium.data;
 
 import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,11 +23,11 @@ import java.io.InputStream;
 public class DataStorage {
     private static final String GLADIATOR_FILE = "/gladiator";
 
-    public static boolean saveGladiator(JSONArray gladiator, Context context){
+    public static boolean saveGladiator(JSONObject gladiator, Context context){
         return saveGladiator(gladiator, GLADIATOR_FILE, context);
     }
 
-    private static boolean saveGladiator(JSONArray gladiator, String fileName, Context context) {
+    private static boolean saveGladiator(JSONObject gladiator, String fileName, Context context) {
         try {
             File path = context.getFilesDir();
             File file = new File(path,fileName);
@@ -49,7 +50,7 @@ public class DataStorage {
 
     private static String loadGladiator(String file, Context context) {
         InputStream inputStream;
-        String s = "error";
+        String s = "";
         try {
             inputStream = new FileInputStream(context.getFilesDir() + file);
             s = convertStreamToString(inputStream);

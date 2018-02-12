@@ -1,0 +1,121 @@
+package com.example.clynch.gladium.ui;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.app.Fragment;
+import android.support.annotation.NonNull;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.clynch.gladium.R;
+import com.example.clynch.gladium.logic.Game;
+import com.example.clynch.gladium.logic.items.EmptyFist;
+import com.example.clynch.gladium.logic.items.Shield;
+import com.example.clynch.gladium.logic.items.Weapon;
+import com.example.clynch.gladium.logic.items.WoodenShield;
+import com.example.clynch.gladium.logic.items.WoodenSword;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+/**
+ This is the homescreen of the application
+ It is a fullscreen fragment
+ TODO Move all the storage into separate class
+ */
+public class HomeFragment extends Fragment {
+
+    TextView ageTV, HPTV, weaponTV, shieldTV, goldTV, titleTV, nameTV;
+
+    private OnFragmentInteractionListener mListener;
+
+    public HomeFragment() {
+        // Required empty public constructor
+    }
+
+    public static HomeFragment newInstance() {
+        HomeFragment fragment = new HomeFragment();
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    /**
+     * Updates the information on the screen
+     */
+    private void updateGladiatorDataDisplay(String stringGlad) {
+        try {
+            JSONObject jsGlad = new JSONObject(stringGlad);
+            nameTV.setText(jsGlad.getString("name"));
+            titleTV.setText(jsGlad.getString("title"));
+            ageTV.setText(String.valueOf(jsGlad.getInt("age")));
+            HPTV.setText(String.valueOf(jsGlad.getInt("currentHP") + "/" + jsGlad.getInt("maxHP")));
+            weaponTV.setText(jsGlad.getString("weapon"));
+            shieldTV.setText(jsGlad.getString("shield"));
+            goldTV.setText(String.valueOf(jsGlad.getInt("gold")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Handles all the view stuff
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        titleTV = view.findViewById(R.id.title_valueTV);
+        ageTV = view.findViewById(R.id.age_valueTV);
+        HPTV = view.findViewById(R.id.hp_valueTV);
+        weaponTV = view.findViewById(R.id.weapon_valueTV);
+        shieldTV = view.findViewById(R.id.shield_valueTV);
+        goldTV = view.findViewById(R.id.gold_valueTV);
+        nameTV = view.findViewById(R.id.glad_nameTV);
+        updateGladiatorDataDisplay(Game.getGladiator());
+        return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void getFragment(String s);
+    }
+}

@@ -9,7 +9,7 @@
     android:layout_marginBottom="@dimen/home_horizontal_margin"
     android:layout_marginLeft="@dimen/home_horizontal_margin"
     android:minHeight="91dp"
-    tools:context="com.example.clynch.gladium.MakeGladiatorFragment">
+    tools:context="com.example.clynch.gladium.ui.MakeGladiatorFragment">
     <Button
         android:text="Done"
         android:layout_width="wrap_content"

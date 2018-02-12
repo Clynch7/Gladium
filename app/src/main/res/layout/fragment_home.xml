@@ -9,7 +9,7 @@
     android:layout_marginBottom="@dimen/home_horizontal_margin"
     android:layout_marginLeft="@dimen/home_horizontal_margin"
     android:minHeight="91dp"
-    tools:context="com.example.clynch.gladium.HomeFragment">
+    tools:context="com.example.clynch.gladium.ui.HomeFragment">
 
     <TextView
         android:id="@+id/glad_nameTV"

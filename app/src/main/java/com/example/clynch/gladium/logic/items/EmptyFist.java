@@ -1,11 +1,14 @@
-package com.example.clynch.gladium;
+package com.example.clynch.gladium.logic.items;
+
+import com.example.clynch.gladium.logic.items.Shield;
+import com.example.clynch.gladium.logic.items.Weapon;
 
 /**
  * Created by Clynch on 2018-02-08.
  */
 
-public class EmptyFist implements Shield, Weapon{
-    EmptyFist(){
+public class EmptyFist implements Shield, Weapon {
+    public EmptyFist(){
 
     }
     @Override

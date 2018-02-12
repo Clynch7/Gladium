@@ -1,4 +1,4 @@
-package com.example.clynch.gladium;
+package com.example.clynch.gladium.logic.items;
 
 /**
  * Created by Clynch on 2018-02-08.

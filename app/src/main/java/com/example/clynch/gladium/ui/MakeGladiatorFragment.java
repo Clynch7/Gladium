@@ -1,20 +1,17 @@
-package com.example.clynch.gladium;
+package com.example.clynch.gladium.ui;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.json.JSONArray;
+import com.example.clynch.gladium.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -95,14 +92,14 @@ public class MakeGladiatorFragment extends Fragment implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             /**
-             * Create a gladiator in JSONArray format using makeGladiatorJSON
+             * Create a gladiator in JSONobject format using makeGladiatorJSON
              * Send the gladiatorJSON to the parent activity
              * Ask to change to the home fragment
              */
             case R.id.create_gladiator_button:
-                JSONArray jsGladiator = makeGladiatorJSON(nameET.getText().toString(),
+                JSONObject jsGladiator = makeGladiatorJSON(nameET.getText().toString(),
                         titleET.getText().toString(),
-                        ageET.getText().toString(),
+                        Integer.valueOf(ageET.getText().toString()),
                         Integer.valueOf(goldET.getText().toString()));
                 mListener.onMadeGladiator(jsGladiator);
                 mListener.getFragment("home");
@@ -118,24 +115,16 @@ public class MakeGladiatorFragment extends Fragment implements View.OnClickListe
      * @param gold
      * @return
      */
-    private JSONArray makeGladiatorJSON(String name, String title, String age, int gold) {
-        JSONArray jsGlad = new JSONArray();
-        JSONObject jsName = new JSONObject();
-        JSONObject jsTitle = new JSONObject();
-        JSONObject jsAge = new JSONObject();
-        JSONObject jsGold = new JSONObject();
+    private JSONObject makeGladiatorJSON(String name, String title, int age, int gold) {
+        JSONObject jsGlad = new JSONObject();
         try {
-            jsName.put("name", name);
-            jsTitle.put("title", title);
-            jsAge.put("age", age);
-            jsGold.put("gold", gold);
+            jsGlad.put("name", name);
+            jsGlad.put("title", title);
+            jsGlad.put("age", age);
+            jsGlad.put("gold", gold);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        jsGlad.put(jsName);
-        jsGlad.put(jsTitle);
-        jsGlad.put(jsAge);
-        jsGlad.put(jsGold);
         return jsGlad;
     }
 
@@ -146,7 +135,7 @@ public class MakeGladiatorFragment extends Fragment implements View.OnClickListe
      */
     public interface OnFragmentInteractionListener {
         // Sends a gladiator to the parent activity
-        void onMadeGladiator(JSONArray jsGlad);
+        void onMadeGladiator(JSONObject jsGlad);
         // asks the activity to change fragment
         void getFragment(String home);
     }
