@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.clynch.gladium.GlVar;
 import com.example.clynch.gladium.R;
+import com.example.clynch.gladium.logic.Game;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -101,6 +103,11 @@ public class MakeGladiatorFragment extends Fragment implements View.OnClickListe
                         titleET.getText().toString(),
                         Integer.valueOf(ageET.getText().toString()),
                         Integer.valueOf(goldET.getText().toString()));
+                Game.createGladiator(jsGladiator.toString());
+                nameET.setText("");
+                titleET.setText("");
+                ageET.setText("");
+                goldET.setText("");
                 mListener.onMadeGladiator(jsGladiator);
                 mListener.getFragment("home");
                 break;
@@ -118,10 +125,14 @@ public class MakeGladiatorFragment extends Fragment implements View.OnClickListe
     private JSONObject makeGladiatorJSON(String name, String title, int age, int gold) {
         JSONObject jsGlad = new JSONObject();
         try {
-            jsGlad.put("name", name);
-            jsGlad.put("title", title);
-            jsGlad.put("age", age);
-            jsGlad.put("gold", gold);
+            jsGlad.put(GlVar.GL_NAME_TAG, name);
+            jsGlad.put(GlVar.GL_TITLE_TAG, title);
+            jsGlad.put(GlVar.GL_AGE_TAG, age);
+            jsGlad.put(GlVar.GL_GOLD_TAG, gold);
+            jsGlad.put(GlVar.GL_CURHP_TAG, 50);
+            jsGlad.put(GlVar.GL_MAXHP_TAG, 50);
+            jsGlad.put(GlVar.GL_SHIELD_TAG, "EmptyFist");
+            jsGlad.put(GlVar.GL_WEAPON_TAG, "EmptyFist");
         } catch (JSONException e) {
             e.printStackTrace();
         }

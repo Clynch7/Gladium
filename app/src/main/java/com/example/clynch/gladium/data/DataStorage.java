@@ -22,8 +22,11 @@ import java.io.InputStream;
 
 public class DataStorage {
     private static final String GLADIATOR_FILE = "/gladiator";
-
-    public static boolean saveGladiator(JSONObject gladiator, Context context){
+    private static Context context;
+    public static void initialize(Context ctx){
+        context = ctx;
+    }
+    public static boolean saveGladiator(JSONObject gladiator){
         return saveGladiator(gladiator, GLADIATOR_FILE, context);
     }
 
@@ -44,7 +47,7 @@ public class DataStorage {
         }
     }
 
-    public static String loadGladiator(Context context){
+    public static String loadGladiator(){
         return loadGladiator(GLADIATOR_FILE, context);
     }
 
@@ -66,5 +69,9 @@ public class DataStorage {
     private static String convertStreamToString(java.io.InputStream is) {
         java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
+    }
+
+    public static void removeSavedGladiator() {
+        saveGladiator(new JSONObject());
     }
 }

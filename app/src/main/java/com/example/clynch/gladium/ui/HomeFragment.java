@@ -7,18 +7,18 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.clynch.gladium.GlVar;
 import com.example.clynch.gladium.R;
+import com.example.clynch.gladium.data.DataStorage;
 import com.example.clynch.gladium.logic.Game;
-import com.example.clynch.gladium.logic.items.EmptyFist;
-import com.example.clynch.gladium.logic.items.Shield;
-import com.example.clynch.gladium.logic.items.Weapon;
-import com.example.clynch.gladium.logic.items.WoodenShield;
-import com.example.clynch.gladium.logic.items.WoodenSword;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import javax.microedition.khronos.opengles.GL;
 
 
 /**
@@ -26,9 +26,10 @@ import org.json.JSONObject;
  It is a fullscreen fragment
  TODO Move all the storage into separate class
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     TextView ageTV, HPTV, weaponTV, shieldTV, goldTV, titleTV, nameTV;
+    Button abilitiesBT, shopBT, arenaBT;
 
     private OnFragmentInteractionListener mListener;
 
@@ -52,13 +53,13 @@ public class HomeFragment extends Fragment {
     private void updateGladiatorDataDisplay(String stringGlad) {
         try {
             JSONObject jsGlad = new JSONObject(stringGlad);
-            nameTV.setText(jsGlad.getString("name"));
-            titleTV.setText(jsGlad.getString("title"));
-            ageTV.setText(String.valueOf(jsGlad.getInt("age")));
-            HPTV.setText(String.valueOf(jsGlad.getInt("currentHP") + "/" + jsGlad.getInt("maxHP")));
-            weaponTV.setText(jsGlad.getString("weapon"));
-            shieldTV.setText(jsGlad.getString("shield"));
-            goldTV.setText(String.valueOf(jsGlad.getInt("gold")));
+            nameTV.setText(jsGlad.getString(GlVar.GL_NAME_TAG));
+            titleTV.setText(jsGlad.getString(GlVar.GL_TITLE_TAG));
+            ageTV.setText(String.valueOf(jsGlad.getInt(GlVar.GL_AGE_TAG)));
+            HPTV.setText(String.valueOf(jsGlad.getInt(GlVar.GL_CURHP_TAG) + "/" + jsGlad.getInt(GlVar.GL_MAXHP_TAG)));
+            weaponTV.setText(jsGlad.getString(GlVar.GL_WEAPON_TAG));
+            shieldTV.setText(jsGlad.getString(GlVar.GL_SHIELD_TAG));
+            goldTV.setText(String.valueOf(jsGlad.getInt(GlVar.GL_GOLD_TAG)));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -84,6 +85,12 @@ public class HomeFragment extends Fragment {
         goldTV = view.findViewById(R.id.gold_valueTV);
         nameTV = view.findViewById(R.id.glad_nameTV);
         updateGladiatorDataDisplay(Game.getGladiator());
+        abilitiesBT = view.findViewById(R.id.abilities_homeBT);
+        abilitiesBT.setOnClickListener(this);
+        shopBT = view.findViewById(R.id.shop_homeBT);
+        shopBT.setOnClickListener(this);
+        arenaBT = view.findViewById(R.id.arena_homeBT);
+        arenaBT.setOnClickListener(this);
         return view;
     }
 
@@ -117,5 +124,30 @@ public class HomeFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void getFragment(String s);
+    }
+
+    /**
+     * Handles the click events
+     */
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            /**
+             * Create a gladiator in JSONobject format using makeGladiatorJSON
+             * Send the gladiatorJSON to the parent activity
+             * Ask to change to the home fragment
+             */
+            case R.id.abilities_homeBT:
+                DataStorage.removeSavedGladiator();
+                Game.removeGladiator();
+                mListener.getFragment("makeGladiator");
+                break;
+            case R.id.shop_homeBT:
+                mListener.getFragment("shop");
+                break;
+            case R.id.arena_homeBT:
+                mListener.getFragment("arena");
+                break;
+        }
     }
 }

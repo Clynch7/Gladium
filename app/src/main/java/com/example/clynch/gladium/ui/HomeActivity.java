@@ -21,10 +21,14 @@ import org.json.JSONObject;
 
 public class HomeActivity extends AppCompatActivity
 implements HomeFragment.OnFragmentInteractionListener,
-MakeGladiatorFragment.OnFragmentInteractionListener{
+MakeGladiatorFragment.OnFragmentInteractionListener,
+ArenaFragment.OnFragmentInteractionListener,
+ShopFragment.OnFragmentInteractionListener{
 
     HomeFragment homeFragment;
     MakeGladiatorFragment makeGladiatorFragment;
+    ShopFragment shopFragment;
+    ArenaFragment arenaFragment;
     FragmentManager fragmentManager;
     Game game;
 
@@ -37,11 +41,13 @@ MakeGladiatorFragment.OnFragmentInteractionListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        DataStorage.initialize(this);
         Game.initialize(this);
 
         makeGladiatorFragment = new MakeGladiatorFragment();
         homeFragment = new HomeFragment();
+        shopFragment = new ShopFragment();
+        arenaFragment = new ArenaFragment();
 
         fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -63,8 +69,8 @@ MakeGladiatorFragment.OnFragmentInteractionListener{
     @Override
     public void onMadeGladiator(JSONObject jsGlad) {
         Log.e("TAG", jsGlad.toString());
-        DataStorage.saveGladiator(jsGlad, this);
-        Log.e("TAG", DataStorage.loadGladiator(this));
+        DataStorage.saveGladiator(jsGlad);
+        Log.e("TAG", DataStorage.loadGladiator());
     }
 
     /**
@@ -91,6 +97,12 @@ MakeGladiatorFragment.OnFragmentInteractionListener{
                 break;
             case "makeGladiator":
                 changeFragment(makeGladiatorFragment);
+                break;
+            case "shop":
+                changeFragment(shopFragment);
+                break;
+            case "arena":
+                changeFragment(arenaFragment);
                 break;
         }
     }

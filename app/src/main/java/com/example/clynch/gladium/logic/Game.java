@@ -3,6 +3,7 @@ package com.example.clynch.gladium.logic;
 import android.content.Context;
 
 import com.example.clynch.gladium.data.DataStorage;
+import com.example.clynch.gladium.logic.units.Gladiator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,7 +22,7 @@ public class Game {
     private static Gladiator gameGladiator;
     public static void initialize(Context ctx){
         context = ctx;
-        gameGladiator = new Gladiator(DataStorage.loadGladiator(context));
+        gameGladiator = new Gladiator(DataStorage.loadGladiator());
     }
 
     /**
@@ -29,7 +30,7 @@ public class Game {
      * @return If game has a propper gladiator
      */
     public static boolean hasGladiator(){
-        String gladString = DataStorage.loadGladiator(context);
+        String gladString = DataStorage.loadGladiator();
         if(gladString == ""){
             return false;
         }else{
@@ -71,22 +72,16 @@ public class Game {
         if (gameGladiator != null) {
             return false;
         }else{
-            try {
-                JSONObject jsGlad = new JSONObject(gladString);
-                String name = jsGlad.getString("name");
-                String title = jsGlad.getString("title");
-                int age = jsGlad.getInt("age");
-                int gold = jsGlad.getInt("gold");
-                gameGladiator = new Gladiator(name, title,age,gold);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            gameGladiator = new Gladiator(gladString);
             return true;
         }
     }
 
     public static void save(){
-        DataStorage.saveGladiator(gladiatorToJSON(gameGladiator), context);
+        DataStorage.saveGladiator(gladiatorToJSON(gameGladiator));
     }
 
+    public static void removeGladiator() {
+        gameGladiator = null;
+    }
 }
