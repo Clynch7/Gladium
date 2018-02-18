@@ -1,5 +1,7 @@
 package com.example.clynch.gladium.logic.units;
 
+import android.util.Log;
+
 import com.example.clynch.gladium.GlVar;
 import com.example.clynch.gladium.logic.items.*;
 
@@ -55,6 +57,7 @@ public class Gladiator implements Unit{
             dmgTaken = 0;
         }
         this.currentHP -= dmgTaken;
+        Log.i("Game", "Gladiator HP " + this.currentHP);
         return this.currentHP > 0;
     }
 

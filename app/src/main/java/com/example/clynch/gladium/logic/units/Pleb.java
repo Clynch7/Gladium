@@ -14,7 +14,7 @@ public class Pleb implements Unit {
         HP = 10;
         damage = 2;
         level = 1;
-        name = "A common Plebian";
+        name = "Plebian";
     }
     @Override
     public int getDamage() {

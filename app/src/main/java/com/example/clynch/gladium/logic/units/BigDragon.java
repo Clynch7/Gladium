@@ -1,5 +1,7 @@
 package com.example.clynch.gladium.logic.units;
 
+import android.util.Log;
+
 import java.util.Random;
 
 /**
@@ -16,11 +18,12 @@ public class BigDragon implements Unit {
         maxHP = 100;
         HP = maxHP;
         level = 25;
-        name = "A big Dragon";
+        name = "Big Dragon";
     }
     @Override
     public int getDamage() {
         Random random = new Random();
+        Log.i("Game", "Dragon damage " + random.nextInt(maxDamage-minDamage));
         return minDamage + random.nextInt(maxDamage-minDamage);
     }
 

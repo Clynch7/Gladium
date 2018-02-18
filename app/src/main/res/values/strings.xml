@@ -21,4 +21,7 @@
     <string name="Title">Title</string>
     <string name="Age">Age</string>
     <string name="Gold">Gold</string>
+    <string name="Level">Level</string>
+    <string name="Return">Return</string>
+    <string name="Fight">Fight</string>
 </resources>

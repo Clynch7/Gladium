@@ -1,9 +1,11 @@
 package com.example.clynch.gladium.logic;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.clynch.gladium.data.DataStorage;
 import com.example.clynch.gladium.logic.units.Gladiator;
+import com.example.clynch.gladium.logic.units.Unit;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -83,5 +85,11 @@ public class Game {
 
     public static void removeGladiator() {
         gameGladiator = null;
+    }
+
+    public static void fightUnit(Unit unit){
+        Fight fight = new Fight(gameGladiator, unit);
+        fight.execute();
+        Log.i("Game", fight.getReport());
     }
 }

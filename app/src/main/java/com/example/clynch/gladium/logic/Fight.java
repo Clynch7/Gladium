@@ -20,8 +20,8 @@ public class Fight {
         report = "Fought";
         int end1 = u1.getEndurance();
         int dmg1 = u1.getDamage();
-        int end2 = u1.getEndurance();
-        int dmg2 = u1.getDamage();
+        int end2 = u2.getEndurance();
+        int dmg2 = u2.getDamage();
         while(true){
             end1 --;
             end2 --;
