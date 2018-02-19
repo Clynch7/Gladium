@@ -46,7 +46,7 @@ public class ArenaFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_arena, container, false);
-        backButton = view.findViewById(R.id.arena_back_button);
+        backButton = view.findViewById(R.id.arena_backBT);
         backButton.setOnClickListener(this);
         unitList = view.findViewById(R.id.unit_list_view);
         arenaAdapter = new ArenaAdapter(getContext(), UnitManager.getAllUnitsArray());
@@ -88,7 +88,7 @@ public class ArenaFragment extends Fragment implements View.OnClickListener{
              * Send the gladiatorJSON to the parent activity
              * Ask to change to the home fragment
              */
-            case R.id.arena_back_button:
+            case R.id.arena_backBT:
                 mListener.getFragment("home");
                 break;
         }

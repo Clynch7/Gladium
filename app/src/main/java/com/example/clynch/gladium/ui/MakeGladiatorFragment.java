@@ -131,8 +131,8 @@ public class MakeGladiatorFragment extends Fragment implements View.OnClickListe
             jsGlad.put(GlVar.GL_GOLD_TAG, gold);
             jsGlad.put(GlVar.GL_CURHP_TAG, 50);
             jsGlad.put(GlVar.GL_MAXHP_TAG, 50);
-            jsGlad.put(GlVar.GL_SHIELD_TAG, "EmptyFist");
-            jsGlad.put(GlVar.GL_WEAPON_TAG, "EmptyFist");
+            jsGlad.put(GlVar.GL_SHIELD_TAG, "Empty Fist");
+            jsGlad.put(GlVar.GL_WEAPON_TAG, "Empty Fist");
         } catch (JSONException e) {
             e.printStackTrace();
         }

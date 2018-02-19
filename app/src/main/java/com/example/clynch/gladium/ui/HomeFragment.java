@@ -15,6 +15,7 @@ import com.example.clynch.gladium.R;
 import com.example.clynch.gladium.data.DataStorage;
 import com.example.clynch.gladium.logic.Game;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,7 +51,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     /**
      * Updates the information on the screen
      */
-    private void updateGladiatorDataDisplay(String stringGlad) {
+    public void updateGladiatorDataDisplay(String stringGlad) {
         try {
             JSONObject jsGlad = new JSONObject(stringGlad);
             nameTV.setText(jsGlad.getString(GlVar.GL_NAME_TAG));
@@ -111,6 +112,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mListener = null;
     }
 
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -138,9 +140,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
              * Ask to change to the home fragment
              */
             case R.id.abilities_homeBT:
-                DataStorage.removeSavedGladiator();
-                Game.removeGladiator();
-                mListener.getFragment("makeGladiator");
+                mListener.getFragment("abilities");
                 break;
             case R.id.shop_homeBT:
                 mListener.getFragment("shop");

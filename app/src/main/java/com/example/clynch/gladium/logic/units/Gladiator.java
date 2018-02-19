@@ -5,8 +5,11 @@ import android.util.Log;
 import com.example.clynch.gladium.GlVar;
 import com.example.clynch.gladium.logic.items.*;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashSet;
 
 import javax.microedition.khronos.opengles.GL;
 
@@ -17,19 +20,11 @@ import javax.microedition.khronos.opengles.GL;
 public class Gladiator implements Unit{
     public String title, name;
     public int age, maxHP, currentHP, gold;
-    public Weapon weapon;
-    public Shield shield;
-    public Gladiator(String name, String title, int age, int gold){
-        this.name = name;
-        this.age = age;
-        this.title = title;
-        maxHP = 30;
-        currentHP = 30;
-        this.gold = gold;
-        weapon = new EmptyFist();
-        shield = new EmptyFist();
-    }
+    public Item weapon, shield;
+    HashSet<Item> items;
+
     public Gladiator(String stringGlad){
+        items = new HashSet<Item>();
         try {
             JSONObject jsGlad = new JSONObject(stringGlad);
             this.name = jsGlad.getString(GlVar.GL_NAME_TAG);
@@ -38,8 +33,8 @@ public class Gladiator implements Unit{
             this.maxHP = jsGlad.getInt(GlVar.GL_MAXHP_TAG);
             this.currentHP = jsGlad.getInt(GlVar.GL_CURHP_TAG);
             this.gold = jsGlad.getInt(GlVar.GL_GOLD_TAG);
-            this.weapon = ItemManager.generateWeapon(jsGlad.getString(GlVar.GL_WEAPON_TAG));
-            this.shield = ItemManager.generateShield(jsGlad.getString(GlVar.GL_SHIELD_TAG));
+            this.weapon = ItemManager.generateItem(jsGlad.getString(GlVar.GL_WEAPON_TAG));
+            this.shield = ItemManager.generateItem(jsGlad.getString(GlVar.GL_SHIELD_TAG));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -79,5 +74,23 @@ public class Gladiator implements Unit{
     @Override
     public String getName() {
         return this.name;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+    public void addItem(Item item){
+        items.add(item);
+    }
+
+    public HashSet<Item> getItems() {
+        return items;
+    }
+    public JSONArray getItemsJSON(){
+        JSONArray jsItems = new JSONArray();
+        for (Item i: items) {
+            jsItems.put(i.getName());
+        }
+        return jsItems;
     }
 }

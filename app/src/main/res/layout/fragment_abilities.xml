@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.clynch.gladium.ui.AbilitiesFragment">
+
+    <Button
+        android:id="@+id/reset_hpBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp"
+        android:text="@string/ResetHP" />
+
+    <Button
+        android:id="@+id/remove_gladiatorBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reset_hpBT"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="66dp"
+        android:text="@string/remove_gladiator" />
+
+    <Button
+        android:id="@+id/update_gladiatorBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remove_gladiatorBT"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="91dp"
+        android:text="@string/update_into" />
+
+    <Button
+        android:id="@+id/abilities_backBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/reset_hpBT"
+        android:layout_marginBottom="48dp"
+        android:text="@string/Return" />
+</RelativeLayout>

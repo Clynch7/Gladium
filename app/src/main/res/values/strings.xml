@@ -24,4 +24,8 @@
     <string name="Level">Level</string>
     <string name="Return">Return</string>
     <string name="Fight">Fight</string>
+    <string name="ResetHP">Reset HP</string>
+    <string name="remove_gladiator">Remove Gladiator</string>
+    <string name="update_into">Update into</string>
+    <string name="Buy">Buy</string>
 </resources>

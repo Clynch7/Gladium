@@ -23,12 +23,14 @@ public class HomeActivity extends AppCompatActivity
 implements HomeFragment.OnFragmentInteractionListener,
 MakeGladiatorFragment.OnFragmentInteractionListener,
 ArenaFragment.OnFragmentInteractionListener,
-ShopFragment.OnFragmentInteractionListener{
+ShopFragment.OnFragmentInteractionListener,
+AbilitiesFragment.OnFragmentInteractionListener{
 
     HomeFragment homeFragment;
     MakeGladiatorFragment makeGladiatorFragment;
     ShopFragment shopFragment;
     ArenaFragment arenaFragment;
+    AbilitiesFragment abilitiesFragment;
     FragmentManager fragmentManager;
     Game game;
 
@@ -48,6 +50,7 @@ ShopFragment.OnFragmentInteractionListener{
         homeFragment = new HomeFragment();
         shopFragment = new ShopFragment();
         arenaFragment = new ArenaFragment();
+        abilitiesFragment = new AbilitiesFragment();
 
         fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -93,6 +96,7 @@ ShopFragment.OnFragmentInteractionListener{
         Log.d("TAG", "Changing to fragment " + frag);
         switch (frag){
             case "home":
+                updateInfo();
                 changeFragment(homeFragment);
                 break;
             case "makeGladiator":
@@ -104,6 +108,14 @@ ShopFragment.OnFragmentInteractionListener{
             case "arena":
                 changeFragment(arenaFragment);
                 break;
+            case "abilities":
+                changeFragment(abilitiesFragment);
+                break;
         }
+    }
+
+    @Override
+    public void updateInfo() {
+        homeFragment.updateGladiatorDataDisplay(Game.getGladiator());
     }
 }

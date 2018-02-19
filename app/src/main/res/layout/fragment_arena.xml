@@ -13,7 +13,7 @@
         android:layout_height="375dp"></ListView>
 
     <Button
-        android:id="@+id/arena_back_button"
+        android:id="@+id/arena_backBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

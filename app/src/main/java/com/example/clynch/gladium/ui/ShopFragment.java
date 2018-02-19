@@ -8,13 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.example.clynch.gladium.R;
+import com.example.clynch.gladium.logic.items.ItemManager;
+import com.example.clynch.gladium.logic.units.UnitManager;
 
 public class ShopFragment extends Fragment implements View.OnClickListener {
 
     Button backButton;
     private OnFragmentInteractionListener mListener;
+    ListView itemList;
+    ShopAdapter shopAdapter;
 
     public ShopFragment() {
         // Required empty public constructor
@@ -34,9 +39,12 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_arena, container, false);
-        backButton = view.findViewById(R.id.arena_back_button);
+        View view = inflater.inflate(R.layout.fragment_shop, container, false);
+        backButton = view.findViewById(R.id.shop_backBT);
         backButton.setOnClickListener(this);
+        itemList = view.findViewById(R.id.item_list_view);
+        shopAdapter = new ShopAdapter(getContext(), ItemManager.getAllItemsArray());
+        itemList.setAdapter(shopAdapter);
         return view;
     }
 
@@ -73,7 +81,7 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
              * Send the gladiatorJSON to the parent activity
              * Ask to change to the home fragment
              */
-            case R.id.arena_back_button:
+            case R.id.shop_backBT:
                 mListener.getFragment("home");
                 break;
         }

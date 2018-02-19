@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.clynch.gladium.R;
 import com.example.clynch.gladium.logic.Game;
+import com.example.clynch.gladium.logic.items.ItemManager;
 import com.example.clynch.gladium.logic.units.UnitManager;
 
 import org.json.JSONException;
@@ -20,37 +21,38 @@ import org.json.JSONException;
 /**
  * Created by Clynch on 2018-02-17.
  */
-class ArenaAdapter extends ArrayAdapter<String> {
-    String[] units;
+class ShopAdapter extends ArrayAdapter<String> {
+    String[] items;
 
-    ArenaAdapter(Context context, String[] units) {
+    ShopAdapter(Context context, String[] items) {
         super(context, R.layout.fragment_arena);
-        this.units = units;
+        this.items = items;
     }
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent){
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        View customView = inflater.inflate(R.layout.unit,parent,false);
+        View customView = inflater.inflate(R.layout.item,parent,false);
 
-        TextView nameTV = customView.findViewById(R.id.unit_nameTV);
-        TextView levelTV = customView.findViewById(R.id.unit_leveTV);
-        Button fightBT = customView.findViewById(R.id.unit_fightBT);
+
+        TextView nameTV = customView.findViewById(R.id.item_nameTV);
+        TextView costTV = customView.findViewById(R.id.item_costTV);
+        Button fightBT = customView.findViewById(R.id.item_buyBT);
 
         fightBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Game.fightUnit(units[position]);
+                Game.buyItem(items[position]);
             }
         });
-        levelTV.setText(String.valueOf(UnitManager.generateUnit(units[position]).getLevel()));
-        nameTV.setText(UnitManager.generateUnit(units[position]).getName());
+        costTV.setText(String.valueOf(ItemManager.generateItem(items[position]).getCost()));
+        nameTV.setText(ItemManager.generateItem(items[position]).getName());
 
         return customView;
     }
 
     @Override
     public int getCount(){
-        return units.length;
+        return items.length;
     }
 
 }

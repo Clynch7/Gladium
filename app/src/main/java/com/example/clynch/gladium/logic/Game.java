@@ -4,8 +4,11 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.clynch.gladium.data.DataStorage;
+import com.example.clynch.gladium.logic.items.Item;
+import com.example.clynch.gladium.logic.items.ItemManager;
 import com.example.clynch.gladium.logic.units.Gladiator;
 import com.example.clynch.gladium.logic.units.Unit;
+import com.example.clynch.gladium.logic.units.UnitManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -87,9 +90,22 @@ public class Game {
         gameGladiator = null;
     }
 
-    public static void fightUnit(Unit unit){
+    public static void fightUnit(String stringUnit){
+        Unit unit = UnitManager.generateUnit(stringUnit);
         Fight fight = new Fight(gameGladiator, unit);
         fight.execute();
         Log.i("Game", fight.getReport());
+    }
+
+    public static void resetHP() {
+        gameGladiator.currentHP = gameGladiator.maxHP;
+    }
+    public static void buyItem(String itemString){
+        Item item = ItemManager.generateItem(itemString);
+        if (item != null && item.getCost() < gameGladiator.getGold()){
+            gameGladiator.addItem(item);
+            gameGladiator.gold -= item.getCost();
+        }
+        Log.i("Game",gameGladiator.getItemsJSON().toString());
     }
 }

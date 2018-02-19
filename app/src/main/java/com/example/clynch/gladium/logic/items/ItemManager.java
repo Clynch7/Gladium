@@ -2,6 +2,9 @@ package com.example.clynch.gladium.logic.items;
 
 import android.support.annotation.NonNull;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 /**
  * Created by Clynch on 2018-02-12.
  * Help functions for items like generating objects from Strings
@@ -10,30 +13,39 @@ import android.support.annotation.NonNull;
 public class ItemManager {
     /**
      * This returns the classobject with the name of the spcified string
-     * @param stringWeapon
+     * @param stringItem
      * @return
      */
     @NonNull
-    public static Weapon generateWeapon(String stringWeapon){
-        switch (stringWeapon) {
+    public static Item generateItem(String stringItem){
+        switch (stringItem) {
             case "Wooden Sword":
                 return new WoodenSword();
-            default:
-                return new EmptyFist();
-        }
-    }
-    /**
-     * This returns the classobject with the name of the spcified string
-     * @param stringShield  the name of the object
-     * @return  the class object itself
-     */
-    @NonNull
-    public static Shield generateShield(String stringShield){
-        switch (stringShield) {
             case "Wooden Shield":
                 return new WoodenShield();
-            default:
+            case "Empty Fist":
                 return new EmptyFist();
+            default:
+                return null;
         }
     }
+    public static JSONArray getAllItems(){
+        JSONArray items = new JSONArray();
+        items.put("Wooden Sword");
+        items.put("Wooden Shield");
+        return items;
+    }
+    public static String[] getAllItemsArray(){
+        JSONArray items = getAllItems();
+        String[] response = new String[items.length()];
+        for(int i = 0; i < items.length();i++){
+            try {
+                response[i] = items.get(i).toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return response;
+    }
+
 }

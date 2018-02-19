@@ -7,7 +7,7 @@ import com.example.clynch.gladium.logic.items.Weapon;
  * Created by Clynch on 2018-02-08.
  */
 
-public class EmptyFist implements Shield, Weapon {
+public class EmptyFist implements Item {
     public EmptyFist(){
 
     }
@@ -21,7 +21,16 @@ public class EmptyFist implements Shield, Weapon {
         return 0;
     }
     @Override
-    public String toString(){
+    public String getName(){
         return "Empty Fist";
+    }
+
+    @Override
+    public int getCost() {
+        return 0;
+    }
+    @Override
+    public String toString(){
+        return getName();
     }
 }
